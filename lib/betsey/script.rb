@@ -10,19 +10,19 @@ quit 'バイバイ'
 
 key :xnone, -1 do
   decomp :noun do
-    reasmb 'ああ、', :noun, 'ですか。'
-    reasmb 'なるほど、', :noun, 'ですか。'
-    reasmb 'なるほどねえ、', :noun, '。'
-    reasmb :noun, 'について詳しく聞かせてもらえませんか？'
+    reasmb 'ああ、', noun, 'ですか。'
+    reasmb 'なるほど、', noun, 'ですか。'
+    reasmb 'なるほどねえ、', noun, '。'
+    reasmb noun, 'について詳しく聞かせてもらえませんか？'
     reasmb 'もっと詳しく聞かせてもらえますか？'
-    reasmb :noun, 'っていうのは、どういうことですか？'
+    reasmb noun, 'っていうのは、どういうことですか？'
     reasmb 'それは、詳しくお聞きしても大丈夫ですか？'
   end
 
   decomp :verb do
     reasmb '詳しくお聞きしていいですか？'
-    reasmb 'ああ、', :verb, 'んですか。'
-    reasmb 'なるほど、', :verb, 'んですね。'
+    reasmb 'ああ、', verb, 'んですか。'
+    reasmb 'なるほど、', verb, 'んですね。'
   end
 
   decomp nil do
@@ -45,11 +45,11 @@ end
 
 key 'もし', 3 do
   decomp ['もし', '副詞'], :noun, 'が', :verb do
-    reasmb :verb_renyou, 'そうですか？'
-    reasmb :verb_renyou_ta, 'てほしいですか？'
-    reasmb 'えっ、', :verb_renyou_ta, 'たらですか？'
-    reasmb :verb_renyou_ta, 'たら、どうしますか？'
-    reasmb 'でも、', :verb, 'ことって、あるんですか？'
+    reasmb verb{'連用形'}, 'そうですか？'
+    reasmb verb{'連用タ接続'}, 'てほしいですか？'
+    reasmb 'えっ、', verb{'連用タ接続'}, 'たらですか？'
+    reasmb verb{'連用タ接続'}, 'たら、どうしますか？'
+    reasmb 'でも、', verb, 'ことって、あるんですか？'
   end
 end
 
@@ -118,12 +118,12 @@ end
 
 key 'あなた', 0 do
   decomp 'あなた', 'の', :noun do
-    reasmb '私の', :noun, 'が気になるんですか？'
-    reasmb 'あなたの', :noun, 'は、どうですか？'
-    reasmb '人の', :noun, 'が気になりますか？'
-    reasmb 'えっ、私の', :noun, 'ですか？'
-    reasmb 'どうして私の', :noun, 'のことなんか考えてるんですか？'
-    reasmb '私の', :noun, 'が欲しいんですか？'
+    reasmb '私の', noun, 'が気になるんですか？'
+    reasmb 'あなたの', noun, 'は、どうですか？'
+    reasmb '人の', noun, 'が気になりますか？'
+    reasmb 'えっ、私の', noun, 'ですか？'
+    reasmb 'どうして私の', noun, 'のことなんか考えてるんですか？'
+    reasmb '私の', noun, 'が欲しいんですか？'
   end
 end
 
@@ -147,13 +147,13 @@ end
 
 key '私', 2 do
   decomp '私', 'の', :noun, 'が', :verb do
-    reasmb 'あなたの', :noun, 'は', :verb, 'んですか？'
-    reasmb 'なぜ、あなたの', :noun, 'は', :verb, 'んですか？'
-    reasmb :noun, 'が', :verb, 'ことは、重大ですか？'
-    reasmb_for_memory 'なぜ、あなたの', :noun, 'は', :verb, 'んでしょうね。'
-    reasmb_for_memory 'あなたの', :noun, 'は', :verb, 'んでしたっけ？'
-    reasmb_for_memory 'それは、', :noun, 'が',
-      :verb, 'ことと、何か関係があるんですか？'
+    reasmb 'あなたの', noun, 'は', verb, 'んですか？'
+    reasmb 'なぜ、あなたの', noun, 'は', verb, 'んですか？'
+    reasmb noun, 'が', verb, 'ことは、重大ですか？'
+    reasmb_for_memory 'なぜ、あなたの', noun, 'は', verb, 'んでしょうね。'
+    reasmb_for_memory 'あなたの', noun, 'は', verb, 'んでしたっけ？'
+    reasmb_for_memory 'それは、', noun, 'が',
+      verb, 'ことと、何か関係があるんですか？'
   end
 end
 

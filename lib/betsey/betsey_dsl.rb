@@ -18,7 +18,42 @@ module BetseyDSL
     @keyword_detectors << keyword_detector
   end
 
+  def noun(number = 1)
+    NounVariable.new(:noun, number)
+  end
+
+  def verb(number = 1, &block)
+    form = block ? block.call : nil
+    VerbVariable.new(:verb, number, form)
+  end
+
   def goto(key_symbol)
+  end
+
+  class POSVariable
+    def initialize(pos, number)
+      @pos = pos
+      @number = number
+    end
+    attr_reader :pos, :number, :form
+
+    def substitute(token)
+      token[@pos][@number]
+    end
+  end
+
+  class NounVariable < POSVariable
+  end
+
+  class VerbVariable < POSVariable
+    def initialize(pos, number, form)
+      super(pos, number)
+      @form = form
+    end
+
+    def substitute(token)
+      super.inflect(@form)
+    end
   end
 
   class KeywordDetector
@@ -82,52 +117,22 @@ module BetseyDSL
       def sequencial_match(node)
       end
 
-      class VerbToken
-        private
-        def verb
-        end
-
-        def verb_renyou
-        end
-
-        def verb_renyou_ta
-        end
-
-        def verb_rentai
-        end
-      end
-
       class Reassembler
         def initialize(sequence)
           @sequence = sequence
         end
 
         def reassemble(token)
-          candidate = reassemble_noun(@sequence, token)
-          candidate = reassemble_verb(candidate, token)
+          candidate = @sequence.map{|item| reassemble_token(item, token)}
           join_sequence(candidate)
         end
 
         private
-        def reassemble_noun(sequence, token)
-          if token[:noun]
-            sequence.map{|item| item == :noun ? token[:noun] : item}
+        def reassemble_token(element, token)
+          if element.is_a(String)
+            element
           else
-            sequence
-          end
-        end
-
-        def reassemble_verb(sequence, token)
-          if token[:verb]
-            map_with_verb(sequence, token[:verb])
-          else
-            sequence
-          end
-        end
-
-        def map_with_verb(sequence, verb_token)
-          sequence.map do |item|
-            item.to_s[/^verb/] ? verb_token.conjugate(item) : item
+            element.substitute(token)
           end
         end
 
