@@ -14,10 +14,8 @@ class Betsey
     @finals = []
     @quits = []
     @keyword_detectors = []
-    current_dir = File.expand_path(File.dirname(__FILE__))
-    script_path = '/betsey/script.rb'
-    script = open(current_dir + script_path).read
-    eval(script)
+    script_path ||= default_script_path
+    eval(open(script_path).read)
   end
 
   def greet
@@ -33,6 +31,10 @@ class Betsey
   end
 
   private
+  def default_script_path
+    File.expand_path(File.dirname(__FILE__)) + '/betsey/script.rb'
+  end
+
   def compose(node)
     @keyword_detectors.find_all{|detector|
       detector.compose_response(node)
