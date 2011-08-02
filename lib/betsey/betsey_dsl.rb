@@ -52,7 +52,7 @@ module BetseyDSL
     end
 
     def substitute(token)
-      super.inflect(@form)
+      @form ? super.inflect(@form) : super
     end
   end
 
