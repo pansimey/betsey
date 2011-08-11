@@ -14,8 +14,7 @@ class Betsey
     @finals = []
     @quits = []
     @keyword_detectors = []
-    script_path ||= default_script_path
-    eval(open(script_path).read)
+    eval(open(script_path || default_script_path).read)
   end
 
   def greet
