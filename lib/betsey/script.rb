@@ -67,7 +67,7 @@ end
 key '名前', 15 do
   decomp nil do
     reasmb '名前のことは、あまり気にしないんです。'
-    reasmb '名前なんて，どうでもいいと思うんですよね。'
+    reasmb '名前なんて、どうでもいいと思うんですよね。'
   end
 end
 
