@@ -7,6 +7,7 @@ require 'betsey_dsl'
 class Betsey
   include BetseyDSL
   @@tagger = MeCab::Tagger.new
+
   def initialize(script_path = nil)
     @initials = []
     @finals = []
