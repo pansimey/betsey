@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 require 'MeCab'
 current_dir = File.expand_path(File.dirname(__FILE__))
 $:.unshift current_dir + '/betsey'
