@@ -20,7 +20,7 @@ class Betsey
     @initials.shuffle.first
   end
 
-  def response(string)
+  def respond_to(string)
     compose(@@tagger.parse_to_node(string))
   end
 
