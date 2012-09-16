@@ -1,7 +1,7 @@
-require 'MeCab'
 current_dir = File.expand_path(File.dirname(__FILE__))
 $:.unshift current_dir + '/betsey'
-require 'mecab_utf8_only'
+
+require 'mecab19u'
 require 'betsey_dsl'
 
 class Betsey
