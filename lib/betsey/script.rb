@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 
 initial '最近、何かありましたか？'
 initial '遊びに行きたいところとか、ありますか？'
